@@ -1,6 +1,12 @@
-@extends('app')
+@extends('layout')
+
+@section('title','DMN GSJA - Masuk')
+
+@section('navbar')
+@overwrite
 
 @section('content')
+
 <div class="container-fluid">
 	<div class="row">
 		<div class="col-md-8 col-md-offset-2">

@@ -1,4 +1,9 @@
-@extends('app')
+@extends('layout')
+
+@section('title','DMN GSJA - Masuk')
+
+@section('navbar')
+@overwrite
 
 @section('content')
 <div class="container-fluid">

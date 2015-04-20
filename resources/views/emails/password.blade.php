@@ -1,1 +1,3 @@
-Click here to reset your password: {{ url('password/reset/'.$token) }}
+Database DMN GSJA
+
+Klik link ini untuk me-reset password: {{ url('password/reset/'.$token) }}
