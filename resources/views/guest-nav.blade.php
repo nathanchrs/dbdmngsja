@@ -15,12 +15,11 @@
         <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
         <div class="form-group">
-          <input placeholder="Username" class="form-control" type="text" name="email">
+          <input placeholder="Username" class="form-control" type="text" name="username" value="{{ old('username') }}">
         </div>
         <div class="form-group">
           <input placeholder="Password" class="form-control" type="password" name="password">
         </div>
-        <input type="checkbox" name="remember">
         <button type="submit" class="btn btn-success">Masuk</button>
       </form>
 
@@ -30,4 +29,13 @@
 
 <style>
   body { padding-top:50px; }
+  div.alert { position:fixed; top:70px; right:105px; z-index:999; }
 </style>
+
+@if(count($errors) > 0)
+  <div class="alert alert-danger">
+    @foreach ($errors->all() as $error)
+      <p>{{ $error }}</p>
+    @endforeach
+  </div>
+@endif
