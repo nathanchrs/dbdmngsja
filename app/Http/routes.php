@@ -16,5 +16,5 @@ Route::get('dashboard', 'DashboardController@index');
 
 Route::controllers([
 	'auth' => 'Auth\AuthController',
-	//'password' => 'Auth\PasswordController', //TODO - password reset dan registrasi user
+	'password' => 'Auth\PasswordController', //TODO - password reset dan registrasi user
 ]);
