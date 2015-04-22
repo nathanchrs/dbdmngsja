@@ -11,7 +11,7 @@
 			"file": "resources/views/layout.blade.php",
 			"settings":
 			{
-				"buffer_size": 1556,
+				"buffer_size": 1625,
 				"line_ending": "Windows"
 			}
 		},
@@ -19,7 +19,58 @@
 			"file": "resources/views/dashboard.blade.php",
 			"settings":
 			{
-				"buffer_size": 7882,
+				"buffer_size": 2404,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "database/migrations/2015_04_22_150313_create_perintisan_table.php",
+			"settings":
+			{
+				"buffer_size": 1038,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"contents": "<?php\n\nuse Illuminate\\Database\\Seeder;\nuse Illuminate\\Database\\Eloquent\\Model;\nuse App\\User;\nuse App\\Perintisan;\n\nclass DatabaseSeeder extends Seeder {\n\n	/**\n	 * Run the database seeds.\n	 *\n	 * @return void\n	 */\n	public function run()\n	{\n		Model::unguard();\n		$this->command->info('Seeding database...');\n\n		$this->call('UserTableSeeder');\n		$this->call('PerintisanTableSeeder');\n	}\n\n}\n\nclass UserTableSeeder extends Seeder {\n\n	/**\n	 * Seeds the user table.\n	 *\n	 * @return void\n	 */\n	public function run()\n	{\n		DB::table('users')->delete();\n		User::create(['name'=>'Nathan Chris', 'username'=>'nathanchrs', 'email'=>'nathanchrs@outlook.com', 'password'=>Hash::make('aaaAAA123')]);\n\n		$this->command->info('User table seeded!');\n	}\n\n}\n\nclass PerintisanTableSeeder extends Seeder {\n\n	/**\n	 * Seeds the perintisan table.\n	 *\n	 * @return void\n	 */\n	public function run()\n	{\n		DB::table('perintisan')->delete();\n		Perintisan::create(['namaperintisan'=>'sampleperintisan']);\n\n		$this->command->info('Perintisan table seeded!');\n	}\n\n}",
+			"file": "database/seeds/DatabaseSeeder.php",
+			"file_size": 1112,
+			"file_write_time": 130741654576844291,
+			"settings":
+			{
+				"buffer_size": 1028,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "app/Perintisan.php",
+			"settings":
+			{
+				"buffer_size": 209,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "resources/views/user-nav.blade.php",
+			"settings":
+			{
+				"buffer_size": 895,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "resources/views/home.blade.php",
+			"settings":
+			{
+				"buffer_size": 1969,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "public/css/dashboard.css",
+			"settings":
+			{
+				"buffer_size": 770,
 				"line_ending": "Windows"
 			}
 		},
@@ -27,7 +78,15 @@
 			"file": "app/Http/routes.php",
 			"settings":
 			{
-				"buffer_size": 590,
+				"buffer_size": 634,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "app/User.php",
+			"settings":
+			{
+				"buffer_size": 812,
 				"line_ending": "Unix"
 			}
 		},
@@ -35,31 +94,15 @@
 			"file": "resources/views/guest-nav.blade.php",
 			"settings":
 			{
-				"buffer_size": 1272,
+				"buffer_size": 1483,
 				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "vendor/laravel/framework/src/Illuminate/Foundation/Auth/ResetsPasswords.php",
-			"settings":
-			{
-				"buffer_size": 2810,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "vendor/laravel/framework/src/Illuminate/Foundation/Auth/AuthenticatesAndRegistersUsers.php",
-			"settings":
-			{
-				"buffer_size": 2728,
-				"line_ending": "Unix"
 			}
 		},
 		{
 			"file": "resources/views/auth/login.blade.php",
 			"settings":
 			{
-				"buffer_size": 1825,
+				"buffer_size": 1824,
 				"line_ending": "Unix"
 			}
 		}
@@ -184,25 +227,41 @@
 	"expanded_folders":
 	[
 		"/D/Progs/Web/XAMPP/htdocs/dbdmngsja",
-		"/D/Progs/Web/XAMPP/htdocs/dbdmngsja/app/Handlers",
+		"/D/Progs/Web/XAMPP/htdocs/dbdmngsja/app",
+		"/D/Progs/Web/XAMPP/htdocs/dbdmngsja/app/Http",
 		"/D/Progs/Web/XAMPP/htdocs/dbdmngsja/app/Http/Controllers",
 		"/D/Progs/Web/XAMPP/htdocs/dbdmngsja/app/Http/Controllers/Auth",
 		"/D/Progs/Web/XAMPP/htdocs/dbdmngsja/app/Services",
+		"/D/Progs/Web/XAMPP/htdocs/dbdmngsja/database",
+		"/D/Progs/Web/XAMPP/htdocs/dbdmngsja/database/migrations",
+		"/D/Progs/Web/XAMPP/htdocs/dbdmngsja/database/seeds",
 		"/D/Progs/Web/XAMPP/htdocs/dbdmngsja/resources",
-		"/D/Progs/Web/XAMPP/htdocs/dbdmngsja/resources/lang/en",
+		"/D/Progs/Web/XAMPP/htdocs/dbdmngsja/resources/lang",
+		"/D/Progs/Web/XAMPP/htdocs/dbdmngsja/resources/lang/id",
 		"/D/Progs/Web/XAMPP/htdocs/dbdmngsja/resources/views",
 		"/D/Progs/Web/XAMPP/htdocs/dbdmngsja/resources/views/auth",
-		"/D/Progs/Web/XAMPP/htdocs/dbdmngsja/vendor",
 		"/D/Progs/Web/XAMPP/htdocs/dbdmngsja/vendor/laravel",
 		"/D/Progs/Web/XAMPP/htdocs/dbdmngsja/vendor/laravel/framework",
 		"/D/Progs/Web/XAMPP/htdocs/dbdmngsja/vendor/laravel/framework/src",
 		"/D/Progs/Web/XAMPP/htdocs/dbdmngsja/vendor/laravel/framework/src/Illuminate",
-		"/D/Progs/Web/XAMPP/htdocs/dbdmngsja/vendor/laravel/framework/src/Illuminate/Auth/Passwords",
 		"/D/Progs/Web/XAMPP/htdocs/dbdmngsja/vendor/laravel/framework/src/Illuminate/Foundation",
 		"/D/Progs/Web/XAMPP/htdocs/dbdmngsja/vendor/laravel/framework/src/Illuminate/Foundation/Auth"
 	],
 	"file_history":
 	[
+		"/D/Progs/Web/XAMPP/htdocs/dbdmngsja/app/Services/Registrar.php",
+		"/D/Progs/Web/XAMPP/htdocs/dbdmngsja/app/Http/Controllers/Auth/AuthController.php",
+		"/D/Progs/Web/XAMPP/htdocs/dbdmngsja/database/seeds/DatabaseSeeder.php",
+		"/D/Downloads/Web Resources/Dashboard Template for Bootstrap_files/dashboard.css",
+		"/D/Progs/Web/XAMPP/htdocs/dbdmngsja/database/migrations/2014_10_12_000000_create_users_table.php",
+		"/D/Progs/Web/XAMPP/htdocs/dbdmngsja/.env",
+		"/D/Progs/Web/XAMPP/htdocs/freeoj/frontend-core/process-contesteditproblem.php",
+		"/D/Progs/Web/XAMPP/htdocs/dbdmngsja/vendor/laravel/framework/src/Illuminate/Foundation/Auth/AuthenticatesAndRegistersUsers.php",
+		"/D/Progs/Web/XAMPP/htdocs/dbdmngsja/resources/lang/id/validation.php",
+		"/D/Progs/Web/XAMPP/htdocs/dbdmngsja/resources/lang/id/pagination.php",
+		"/D/Progs/Web/XAMPP/htdocs/dbdmngsja/config/app.php",
+		"/D/Progs/Web/XAMPP/htdocs/dbdmngsja/resources/lang/id/passwords.php",
+		"/D/Progs/Web/XAMPP/htdocs/dbdmngsja/vendor/laravel/framework/src/Illuminate/Foundation/Auth/ResetsPasswords.php",
 		"/D/Progs/Web/XAMPP/htdocs/dbdmngsja/resources/views/auth/login.blade.php",
 		"/D/Progs/Web/XAMPP/htdocs/dbdmngsja/resources/views/user-nav.blade.php",
 		"/D/Progs/Web/XAMPP/htdocs/dbdmngsja/resources/views/guest-nav.blade.php",
@@ -255,6 +314,14 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"redirectTo",
+			"redirectPath",
+			"this->redirectPath",
+			"redirectPath",
+			"function redirectPath",
+			"/home",
+			"getFailedLoginMessage",
+			";\n",
 			"errors",
 			"/home",
 			"illuminate",
@@ -280,7 +347,7 @@
 	"groups":
 	[
 		{
-			"selected": 5,
+			"selected": 3,
 			"sheets":
 			[
 				{
@@ -289,15 +356,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1556,
+						"buffer_size": 1625,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1556,
-								1556
+								1625,
+								1625
 							]
 						],
 						"settings":
@@ -307,7 +374,7 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 52.0,
+						"translation.y": 101.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 6,
@@ -319,15 +386,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 7882,
+						"buffer_size": 2404,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								35,
-								35
+								2340,
+								2340
 							]
 						],
 						"settings":
@@ -337,27 +404,85 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 926.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 5,
+					"stack_index": 4,
 					"type": "text"
 				},
 				{
 					"buffer": 2,
-					"file": "app/Http/routes.php",
+					"file": "database/migrations/2015_04_22_150313_create_perintisan_table.php",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 590,
+						"buffer_size": 1038,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								0,
-								0
+								880,
+								880
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "database/seeds/DatabaseSeeder.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1028,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								966,
+								966
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 293.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "app/Perintisan.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 209,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								205,
+								205
 							]
 						],
 						"settings":
@@ -368,24 +493,24 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 4,
+					"stack_index": 1,
 					"type": "text"
 				},
 				{
-					"buffer": 3,
-					"file": "resources/views/guest-nav.blade.php",
+					"buffer": 5,
+					"file": "resources/views/user-nav.blade.php",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1272,
+						"buffer_size": 895,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1089,
-								1089
+								27,
+								27
 							]
 						],
 						"settings":
@@ -398,82 +523,112 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 3,
-					"type": "text"
-				},
-				{
-					"buffer": 4,
-					"file": "vendor/laravel/framework/src/Illuminate/Foundation/Auth/ResetsPasswords.php",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 2810,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								2810,
-								2810
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/PHP/PHP.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 1477.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 1,
-					"type": "text"
-				},
-				{
-					"buffer": 5,
-					"file": "vendor/laravel/framework/src/Illuminate/Foundation/Auth/AuthenticatesAndRegistersUsers.php",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 2728,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								1638,
-								1638
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/PHP/PHP.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 847.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 0,
+					"stack_index": 7,
 					"type": "text"
 				},
 				{
 					"buffer": 6,
-					"file": "resources/views/auth/login.blade.php",
-					"semi_transient": true,
+					"file": "resources/views/home.blade.php",
+					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1825,
+						"buffer_size": 1969,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								606,
-								606
+								1857,
+								1857
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": -0.0,
+						"translation.y": 221.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 5,
+					"type": "text"
+				},
+				{
+					"buffer": 7,
+					"file": "public/css/dashboard.css",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 770,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								73,
+								73
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/CSS/CSS.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 8,
+					"type": "text"
+				},
+				{
+					"buffer": 8,
+					"file": "app/Http/routes.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 634,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								547,
+								547
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 11,
+					"type": "text"
+				},
+				{
+					"buffer": 9,
+					"file": "app/User.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 812,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								429,
+								808
 							]
 						],
 						"settings":
@@ -487,13 +642,72 @@
 					},
 					"stack_index": 2,
 					"type": "text"
+				},
+				{
+					"buffer": 10,
+					"file": "resources/views/guest-nav.blade.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1483,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1390,
+								1467
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 49.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 10,
+					"type": "text"
+				},
+				{
+					"buffer": 11,
+					"file": "resources/views/auth/login.blade.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1824,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								109,
+								109
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": -0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 9,
+					"type": "text"
 				}
 			]
 		}
 	],
 	"incremental_find":
 	{
-		"height": 23.0
+		"height": 34.0
 	},
 	"input":
 	{

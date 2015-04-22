@@ -12,7 +12,7 @@
 */
 
 Route::get('/', 'HomeController@index');
-Route::get('dashboard', 'DashboardController@index');
+Route::get('dashboard', 'PerintisanListController@index');
 
 Route::controllers([
 	'auth' => 'Auth\AuthController',

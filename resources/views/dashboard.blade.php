@@ -14,13 +14,13 @@
 <div class="navbar navbar-default navbar-fixed-top databar">
   <div class="container-fluid">
     <div class="navbar-header">
-      <a class="navbar-brand" href="#">Perintisan</a>
+      <a class="navbar-brand" href="#">Perintisan {{ isset($search) ? ' - '.$search : ''}}</a>
     </div>
       
-    <form class="navbar-form navbar-left" role="search">
+    <form class="navbar-form navbar-left" role="search" method="get" action="{{ url('/dashboard') }}">
       <div class="form-group">
         <div class="input-group">
-          <input type="text" class="form-control" placeholder="Cari">
+          <input type="text" name="search" class="form-control" placeholder="Cari" value="{{ $search or '' }}">
           <span class="input-group-btn">
             <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
           </span>
@@ -39,35 +39,25 @@
     <table class="table table-striped">
       <thead>
         <tr>
-          <th>#</th>
-          <th>Header</th>
-          <th>Header</th>
-          <th>Header</th>
-          <th>Header</th>
+          <th>Nama Perintisan</th>
+          <th>Alamat</th>
+          <th>Departemen</th>
+          <th>Daerah</th>
+          <th>Telepon</th>
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td>1,001</td>
-          <td>Lorem</td>
-          <td>ipsum</td>
-          <td>dolor</td>
-          <td>sit</td>
-        </tr>
-        <tr>
-          <td>1,002</td>
-          <td>amet</td>
-          <td>consectetur</td>
-          <td>adipiscing</td>
-          <td>elit</td>
-        </tr>
-        <tr>
-          <td>1,003</td>
-          <td>Integer</td>
-          <td>nec</td>
-          <td>odio</td>
-          <td>Praesent</td>
-        </tr>
+        @forelse($data as $perintisan)
+          <tr>
+            <td>{{ $perintisan->namaperintisan }}</td>
+            <td>{{ $perintisan->alamat }}</td>
+            <td>{{ $perintisan->departemen }}</td>
+            <td>{{ $perintisan->daerah }}</td>
+            <td>{{ $perintisan->telepon }}</td>
+          </tr>
+        @empty
+          <tr><td>Tidak ada data.</td></tr>
+        @endforelse
       </tbody>
     </table>
   </div>
