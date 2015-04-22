@@ -5,31 +5,47 @@
 @section('content')
 
 <style>
-  body { padding-top:235px; }
-  @media (min-width: 768px){
-    body { padding-top:105px; }
-  }
+  body { padding-top:115px; }
 </style>
 
 <div class="navbar navbar-default navbar-fixed-top databar">
   <div class="container-fluid">
     <div class="navbar-header">
-      <a class="navbar-brand" href="#">Perintisan {{ isset($search) ? ' - '.$search : ''}}</a>
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#databar-collapse">
+        <span class="sr-only">Toggle databar</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">Perintisan</a>
     </div>
       
-    <form class="navbar-form navbar-left" role="search" method="get" action="{{ url('/dashboard') }}">
-      <div class="form-group">
-        <div class="input-group">
-          <input type="text" name="search" class="form-control" placeholder="Cari" value="{{ $search or '' }}">
-          <span class="input-group-btn">
-            <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
-          </span>
+    <div class="collapse navbar-collapse" id="databar-collapse">
+      <form class="navbar-form navbar-left" role="search" method="get" action="{{ url('/dashboard') }}">
+        <div class="form-group">
+          <div class="input-group">
+            <input type="text" name="search" class="form-control" placeholder="Cari" value="{{ old('search') }}">
+            <span class="input-group-btn">
+              <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
+            </span>
+          </div>
         </div>
-      </div>
-    </form>
-    
-    <a href="#" class="btn btn-default navbar-btn"><span class="glyphicon glyphicon-plus"></span> Data Baru</a>
-    <a href="#" class="btn btn-default navbar-btn"><span class="glyphicon glyphicon-cog"></span> Pengaturan</a>
+
+        <div class="form-group">
+          <div class="input-group">
+            <span class="input-group-addon">berdasarkan</span>
+            <select class="form-control" name="searchcolumn">
+              @foreach($validcolumns as $colkey => $colval)
+                <option value="{{ $colkey }}" <?php if($colkey==old('searchcolumn')) echo 'selected'; ?>>{{ $colval }}</option>
+              @endforeach
+            </select>
+          </div>
+        </div>
+      </form>
+      
+      <a href="#" class="btn btn-default navbar-btn"><span class="glyphicon glyphicon-plus"></span> Data Baru</a>
+      <a href="#" class="btn btn-default navbar-btn"><span class="glyphicon glyphicon-cog"></span> Pengaturan</a>
+    </div>
 
   </div>
 </div>
@@ -63,7 +79,7 @@
   </div>
 
   <nav>
-    <?php echo isset($search) ? $data->appends(['search'=>urlencode($search)])->render() : $data->render(); ?>
+    {!! $data->render() !!}
   </nav>
 
   <footer>
