@@ -11,7 +11,9 @@
     </div>
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="{{ url('/auth/logout') }}">Keluar</a></li>
+        <li><a href="#">Perintisan</a></li>
+        <li><a href="#">Laporan Keuangan</a></li>
+        <li><a href="{{ url('/auth/logout') }}">{{ Auth::user()->name }} - Keluar</a>
       </ul>
     </div>
   </div>

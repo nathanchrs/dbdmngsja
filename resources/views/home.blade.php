@@ -45,9 +45,8 @@ Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh,
       </div>
 
       <hr>
-
       <footer>
-        <p>© Company 2014</p>
+        <p>© DMN GSJA 2015</p>
       </footer>
     </div> <!-- /container -->
 
