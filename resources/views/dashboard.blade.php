@@ -63,23 +63,7 @@
   </div>
 
   <nav>
-    <ul class="pagination">
-      <li>
-        <a href="#" aria-label="Kembali">
-          <span aria-hidden="true">&laquo;</span>
-        </a>
-      </li>
-      <li class="active" ><a href="#">1</a></li>
-      <li><a href="#">2</a></li>
-      <li><a href="#">3</a></li>
-      <li><a href="#">4</a></li>
-      <li><a href="#">5</a></li>
-      <li>
-        <a href="#" aria-label="Lanjut">
-          <span aria-hidden="true">&raquo;</span>
-        </a>
-      </li>
-    </ul>
+    <?php echo isset($search) ? $data->appends(['search'=>urlencode($search)])->render() : $data->render(); ?>
   </nav>
 
   <footer>

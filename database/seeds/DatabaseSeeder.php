@@ -51,6 +51,8 @@ class PerintisanTableSeeder extends Seeder {
 	{
 		DB::table('perintisan')->delete();
 		Perintisan::create(['namaperintisan'=>'sampleperintisan','alamat'=>'Jl. Namajalan Indah 21, Jakarta']);
+		Perintisan::create(['namaperintisan'=>'sampleperintisan2','alamat'=>'Jl. Namajalan Indah 22, Jakarta']);
+		Perintisan::create(['namaperintisan'=>'sampleperintisan3','alamat'=>'Jl. Namajalan Indah 23, Jakarta']);
 
 		$this->command->info('Perintisan table seeded!');
 	}

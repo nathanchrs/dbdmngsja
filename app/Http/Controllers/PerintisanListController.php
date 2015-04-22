@@ -23,10 +23,12 @@ class PerintisanListController extends Controller {
 	public function index(Request $request)
 	{
 		if($request->has('search')){
-			$data = Perintisan::where('namaperintisan','like','%'.$request->input('search').'%')->get();
+			$data = Perintisan::where('namaperintisan','like','%'.$request->input('search').'%')->paginate(2);
+			$data->setPath('dashboard');
 			return view('dashboard', ['data'=>$data, 'search'=>$request->input('search')]);
 		} else {
-			$data = Perintisan::all();
+			$data = Perintisan::paginate(2);
+			$data->setPath('dashboard');
 			return view('dashboard', ['data'=>$data]);
 		}		
 	}
