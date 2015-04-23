@@ -12,11 +12,11 @@
 */
 
 Route::get('/', 'HomeController@index');
-Route::get('dashboard', 'PerintisanListController@index');
+Route::get('dashboard', function(){
+	return redirect('perintisan');
+}); //temporary, change to menu page/real dashboard
 
-Route::get('perintisan', function(){
-	return view('perintisandetail');
-});
+Route::resource('perintisan', 'PerintisanController', ['except'=>['show']]);
 
 Route::controllers([
 	'auth' => 'Auth\AuthController',

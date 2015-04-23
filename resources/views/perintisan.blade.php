@@ -52,7 +52,7 @@
 
 <div class="container-fluid">
   <div class="table-responsive">
-    <table class="table table-striped">
+    <table class="table">
       <thead>
         <tr>
           <th>Nama Perintisan</th>
@@ -64,8 +64,8 @@
       </thead>
       <tbody>
         @forelse($data as $perintisan)
-          <tr>
-            <td>{{ $perintisan->namaperintisan }}</td>
+          <tr class="clickable" onclick="document.location='{{ url('/perintisan') }}/{{ $perintisan->id }}/edit';">
+            <td><a href="{{ url('/perintisan') }}/{{ $perintisan->id }}/edit">{{ $perintisan->namaperintisan }}</a></td>
             <td>{{ $perintisan->alamat }}</td>
             <td>{{ $perintisan->departemen }}</td>
             <td>{{ $perintisan->daerah }}</td>

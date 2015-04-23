@@ -9,7 +9,7 @@
 	<h1>Nama Perintisan</h1>
 	
 	<ol class="breadcrumb" style="background-color:transparent; padding:2px;">
-		<li><a href="#">Perintisan</a></li>
+		<li><a href="{{ url('/perintisan') }}">Perintisan</a></li>
 		<li class="active">Detail Perintisan</li>
 	</ol>
 

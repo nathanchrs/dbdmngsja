@@ -2,6 +2,13 @@
  * Global add-ons
  */
 
+tr.clickable:hover{
+  background-color:#eee;
+  cursor:pointer;
+}
+tr.clickable:active{
+  background-color:#eee;
+}
  /*
   * TODO: remove body padding-top for print
   */
