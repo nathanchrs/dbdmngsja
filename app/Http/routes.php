@@ -14,6 +14,10 @@
 Route::get('/', 'HomeController@index');
 Route::get('dashboard', 'PerintisanListController@index');
 
+Route::get('perintisan', function(){
+	return view('perintisandetail');
+});
+
 Route::controllers([
 	'auth' => 'Auth\AuthController',
 	'password' => 'Auth\PasswordController', //TODO - password reset dan registrasi user
