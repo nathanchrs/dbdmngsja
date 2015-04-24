@@ -40,7 +40,7 @@ class PerintisanController extends Controller {
 		$request->flash();	
 		$data->setPath('perintisan');
 		$data->appends($request->except('page'));
-		return view('perintisan', ['data'=>$data, 'validcolumns'=>$validcolumns]);
+		return view('perintisan/perintisan', ['data'=>$data, 'validcolumns'=>$validcolumns]);
 	}
 
 	/**
@@ -50,7 +50,7 @@ class PerintisanController extends Controller {
 	 */
 	public function create()
 	{
-		//
+		return view('perintisan/perintisan-details', ['method'=>'POST']);
 	}
 
 	/**
@@ -60,9 +60,8 @@ class PerintisanController extends Controller {
 	 */
 	public function store()
 	{
-		//
+		return "store";
 	}
-
 
 	/**
 	 * Show the form for editing the specified resource.
@@ -72,7 +71,21 @@ class PerintisanController extends Controller {
 	 */
 	public function edit($id)
 	{
-		return view('perintisan-details');
+		$perintisan = Perintisan::find($id);
+		if($perintisan == null) abort(404, "Data perintisan tidak ditemukan.");
+		
+		return view('perintisan/perintisan-details', ['perintisan'=>$perintisan, 'method'=>'PUT']);
+	}
+
+	/**
+	 * Show the the specified resource.
+	 *
+	 * @param  int  $id
+	 * @return Response
+	 */
+	public function show($id)
+	{
+		return $this->edit($id);
 	}
 
 	/**
@@ -83,7 +96,7 @@ class PerintisanController extends Controller {
 	 */
 	public function update($id)
 	{
-		//
+		return "update ".$id;
 	}
 
 	/**
@@ -94,7 +107,7 @@ class PerintisanController extends Controller {
 	 */
 	public function destroy($id)
 	{
-		//
+		return "delete ".$id;
 	}
 
 }

@@ -16,7 +16,7 @@ Route::get('dashboard', function(){
 	return redirect('perintisan');
 }); //temporary, change to menu page/real dashboard
 
-Route::resource('perintisan', 'PerintisanController', ['except'=>['show']]);
+Route::resource('perintisan', 'PerintisanController');
 
 Route::controllers([
 	'auth' => 'Auth\AuthController',

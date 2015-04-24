@@ -19,10 +19,10 @@ class CreatePerintisanTable extends Migration {
 			$table->string('alamat');
 			$table->string('departemen');
 			$table->string('daerah');
-			$table->dateTime('mulaiberdiri');
+			$table->date('mulaiberdiri');
 			$table->string('namaperintis');
 			$table->string('tempatlahir');
-			$table->string('tanggallahir');
+			$table->date('tanggallahir');
 			$table->string('telepon');
 			$table->string('gerejamentor');
 			$table->string('jenisperintisan');

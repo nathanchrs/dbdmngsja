@@ -34,8 +34,6 @@ class UserTableSeeder extends Seeder {
 	{
 		DB::table('users')->delete();
 		User::create(['name'=>'Nathan Chris', 'username'=>'nathanchrs', 'email'=>'nathanchrs@outlook.com', 'password'=>Hash::make('aaaAAA123')]);
-
-		$this->command->info('User table seeded!');
 	}
 
 }
@@ -50,11 +48,9 @@ class PerintisanTableSeeder extends Seeder {
 	public function run()
 	{
 		DB::table('perintisan')->delete();
-		Perintisan::create(['namaperintisan'=>'sampleperintisan','alamat'=>'Jl. Namajalan Indah 21, Jakarta']);
-		Perintisan::create(['namaperintisan'=>'sampleperintisan2','alamat'=>'Jl. Namajalan Indah 22, Jakarta']);
-		Perintisan::create(['namaperintisan'=>'sampleperintisan3','alamat'=>'Jl. Namajalan Indah 23, Jakarta']);
-
-		$this->command->info('Perintisan table seeded!');
+		Perintisan::create(['namaperintisan'=>'samplewawaperintisan','alamat'=>'Jl. Namajalan Indah 21, Jakarta']);
+		Perintisan::create(['namaperintisan'=>'sampleyayazperintisan2','alamat'=>'Jl. Namaraya Indah 22, Bandung']);
+		Perintisan::create(['namaperintisan'=>'samplezazaperintisan3','alamat'=>'Jl. Jalanraya Indah 23, Jakarta']);
 	}
 
 }

@@ -21,7 +21,7 @@
     </div>
       
     <div class="collapse navbar-collapse" id="databar-collapse">
-      <form class="navbar-form navbar-left" role="search" method="get" action="{{ url('/dashboard') }}">
+      <form class="navbar-form navbar-left" role="search" method="get" action="{{ url('/perintisan') }}">
         <div class="form-group">
           <div class="input-group">
             <input type="text" name="search" class="form-control" placeholder="Cari" value="{{ old('search') }}">
@@ -43,7 +43,7 @@
         </div>
       </form>
       
-      <a href="#" class="btn btn-default navbar-btn"><span class="glyphicon glyphicon-plus"></span> Data Baru</a>
+      <a href="{{ url('/perintisan').'/create' }}" class="btn btn-default navbar-btn"><span class="glyphicon glyphicon-plus"></span> Data Baru</a>
       <a href="#" class="btn btn-default navbar-btn"><span class="glyphicon glyphicon-cog"></span> Pengaturan</a>
     </div>
 
