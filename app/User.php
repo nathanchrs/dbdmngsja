@@ -31,4 +31,18 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 	 */
 	protected $hidden = ['password', 'remember_token'];
 
+	public static $columnDescription = [
+		'id'		=> 'ID',
+		'name'		=> 'Nama',
+		'username'	=> 'Username',
+		'password'	=> 'Password',
+		'email'		=> 'Email'
+	];
+
+	public static $loginRules = [
+		'username'	=> 'required',
+		'password'	=> 'required',
+		'remember'	=> 'boolean'
+	];
+
 }

@@ -35,7 +35,7 @@
           <div class="input-group">
             <span class="input-group-addon">berdasarkan</span>
             <select class="form-control" name="searchcolumn">
-              @foreach($validcolumns as $colkey => $colval)
+              @foreach($validColumns as $colkey => $colval)
                 <option value="{{ $colkey }}" <?php if($colkey==old('searchcolumn')) echo 'selected'; ?>>{{ $colval }}</option>
               @endforeach
             </select>

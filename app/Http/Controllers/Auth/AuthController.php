@@ -1,5 +1,7 @@
 <?php namespace App\Http\Controllers\Auth;
 
+use App\User;
+
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Contracts\Auth\Guard;
@@ -54,9 +56,12 @@ class AuthController extends Controller {
 	 */
 	public function postLogin(Request $request)
 	{
-		$this->validate($request, [
-			'username' => 'required', 'password' => 'required',
-		]);
+		$validator = \Validator::make($request->all(), User::$loginRules);
+		$validator->setAttributeNames(User::$columnDescription);
+
+		if($validator->fails()){
+			return redirect($this->loginPath())->withErrors($validator)->withInput($request->only('username', 'remember'));
+		}
 
 		$credentials = $request->only('username', 'password');
 
@@ -67,10 +72,10 @@ class AuthController extends Controller {
 		}
 
 		return redirect($this->loginPath())
-					->withInput($request->only('username', 'remember'))
-					->withErrors([
-						'username' => $this->getFailedLoginMessage(),
-					]);
+			->withInput($request->only('username', 'remember'))
+			->withErrors([
+				'username' => $this->getFailedLoginMessage(),
+			]);
 	}
 
 }

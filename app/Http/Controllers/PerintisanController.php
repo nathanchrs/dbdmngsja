@@ -5,6 +5,7 @@ use App\Http\Controllers\Controller;
 use App\Perintisan;
 
 use Illuminate\Http\Request;
+use Illuminate\Validation\Validator;
 
 class PerintisanController extends Controller {
 
@@ -25,13 +26,14 @@ class PerintisanController extends Controller {
 	 */
 	public function index(Request $request)
 	{
-		$validcolumns = ['namaperintisan'=>'Nama perintisan', 'alamat'=>'Alamat', 'departemen'=>'Departemen', 'daerah'=>'Daerah', 'namaperintis'=>'Nama perintis', 'telepon'=>'Telepon', 'gerejamentor'=>'Gereja mentor', 'jenisperintisan'=>'Jenis perintisan', 'bpd'=>'BPD', 'keterangan'=>'Keterangan'];
+		//$validcolumns = ['namaperintisan'=>'Nama perintisan', 'alamat'=>'Alamat', 'departemen'=>'Departemen', 'daerah'=>'Daerah', 'namaperintis'=>'Nama perintis', 'telepon'=>'Telepon', 'gerejamentor'=>'Gereja mentor', 'jenisperintisan'=>'Jenis perintisan', 'bpd'=>'BPD', 'keterangan'=>'Keterangan'];
+		$validColumns = array_only(Perintisan::$columnDescription, ['namaperintisan', 'alamat', 'departemen', 'daerah', 'namaperintis', 'telepon', 'gerejamentor', 'jenisperintisan', 'bpd', 'keterangan']);
 
 		if($request->has('search')){
-			$searchcolumn = $request->has('searchcolumn') ? $request->input('searchcolumn') : 'namaperintisan';
-			if(!array_key_exists($searchcolumn, $validcolumns)) $searchcolumn = 'namaperintisan';
+			$searchColumn = $request->has('searchcolumn') ? $request->input('searchcolumn') : 'namaperintisan';
+			if(!array_key_exists($searchColumn, $validColumns)) $searchcolumn = 'namaperintisan';
 
-			$data = Perintisan::where($searchcolumn,'like','%'.$request->input('search').'%')->paginate(50);
+			$data = Perintisan::where($searchColumn,'like','%'.$request->input('search').'%')->paginate(50);
 		} else {
 			$data = Perintisan::paginate(50);
 
@@ -40,7 +42,7 @@ class PerintisanController extends Controller {
 		$request->flash();	
 		$data->setPath('perintisan');
 		$data->appends($request->except('page'));
-		return view('perintisan/perintisan', ['data'=>$data, 'validcolumns'=>$validcolumns]);
+		return view('perintisan/perintisan', ['data'=>$data, 'validColumns'=>$validColumns]);
 	}
 
 	/**
@@ -60,7 +62,17 @@ class PerintisanController extends Controller {
 	 */
 	public function store()
 	{
-		return "store";
+		
+		$validator = \Validator::make(\Input::all(), Perintisan::$rules);
+		$validator->setAttributeNames(Perintisan::$columnDescription);
+
+		if($validator->fails()){
+			return "store fail - ".var_dump($validator->errors());
+
+		} else {
+			return "store success";
+		}
+
 	}
 
 	/**
