@@ -62,8 +62,22 @@ class PerintisanController extends Controller {
 	 */
 	public function store()
 	{
+		\Date::setLocale('id');
+		$input = \Input::all();
 
-		$validator = \Validator::make(\Input::all(), Perintisan::$rules);
+		try {
+			$input['mulaiberdiri'] = \Date::parse($input['mulaiberdiri']);
+		} catch(\Exception $ex){
+			return \Redirect::back()->withErrors(['mulaiberdiri'=>'Tanggal mulai berdiri tidak valid.'])->withInput();
+		}
+
+		try {
+			$input['tanggallahir'] = \Date::parse($input['tanggallahir']);
+		} catch(\Exception $ex){
+			return \Redirect::back()->withErrors(['tanggallahir'=>'Tanggal lahir perintis tidak valid.'])->withInput();
+		}
+
+		$validator = \Validator::make($input, Perintisan::$rules);
 		$validator->setAttributeNames(Perintisan::$columnDescription);
 
 		if($validator->fails()){
@@ -73,23 +87,23 @@ class PerintisanController extends Controller {
 
 			$perintisan = new Perintisan;
 
-			$perintisan->namaperintisan 	= \Input::get('namaperintisan');
-			$perintisan->alamat 			= \Input::get('alamat');
-			$perintisan->departemen 		= \Input::get('departemen');
-			$perintisan->daerah 			= \Input::get('daerah');
-			$perintisan->mulaiberdiri 		= \Input::get('mulaiberdiri');
-			$perintisan->namaperintis 		= \Input::get('namaperintis');
-			$perintisan->tanggallahir 		= \Input::get('tanggallahir');
-			$perintisan->tempatlahir 		= \Input::get('tempatlahir');
-			$perintisan->telepon 			= \Input::get('telepon');
-			$perintisan->gerejamentor 		= \Input::get('gerejamentor');
-			$perintisan->jenisperintisan 	= \Input::get('jenisperintisan');
-			$perintisan->jemaatsm 			= \Input::get('jemaatsm');
-			$perintisan->jemaatdewasa 		= \Input::get('jemaatdewasa');
-			$perintisan->jemaatrkm 			= \Input::get('jemaatrkm');
-			$perintisan->jemaatkka 			= \Input::get('jemaatkka');
-			$perintisan->bpd 				= \Input::get('bpd');
-			$perintisan->keterangan 		= \Input::get('keterangan');
+			$perintisan->namaperintisan 	= $input['namaperintisan'];
+			$perintisan->alamat 			= $input['alamat'];
+			$perintisan->departemen 		= $input['departemen'];
+			$perintisan->daerah 			= $input['daerah'];
+			$perintisan->mulaiberdiri 		= $input['mulaiberdiri'];
+			$perintisan->namaperintis 		= $input['namaperintis'];
+			$perintisan->tanggallahir 		= $input['tanggallahir'];
+			$perintisan->tempatlahir 		= $input['tempatlahir'];
+			$perintisan->telepon 			= $input['telepon'];
+			$perintisan->gerejamentor 		= $input['gerejamentor'];
+			$perintisan->jenisperintisan 	= $input['jenisperintisan'];
+			$perintisan->jemaatsm 			= $input['jemaatsm'];
+			$perintisan->jemaatdewasa 		= $input['jemaatdewasa'];
+			$perintisan->jemaatrkm 			= $input['jemaatrkm'];
+			$perintisan->jemaatkka 			= $input['jemaatkka'];
+			$perintisan->bpd 				= $input['bpd'];
+			$perintisan->keterangan 		= $input['keterangan'];
 
 			$perintisan->save();
 
@@ -131,7 +145,22 @@ class PerintisanController extends Controller {
 	 */
 	public function update($id)
 	{
-		$validator = \Validator::make(\Input::all(), Perintisan::$rules);
+		\Date::setLocale('id');
+		$input = \Input::all();
+
+		try {
+			$input['mulaiberdiri'] = \Date::parse($input['mulaiberdiri']);
+		} catch(\Exception $ex){
+			return \Redirect::back()->withErrors(['mulaiberdiri'=>'Tanggal mulai berdiri tidak valid.'])->withInput();
+		}
+
+		try {
+			$input['tanggallahir'] = \Date::parse($input['tanggallahir']);
+		} catch(\Exception $ex){
+			return \Redirect::back()->withErrors(['tanggallahir'=>'Tanggal lahir perintis tidak valid.'])->withInput();
+		}
+
+		$validator = \Validator::make($input, Perintisan::$rules);
 		$validator->setAttributeNames(Perintisan::$columnDescription);
 
 		if($validator->fails()){
@@ -142,31 +171,29 @@ class PerintisanController extends Controller {
 			$perintisan = Perintisan::find($id);
 			if($perintisan == null) abort(404, "Data perintisan tidak ditemukan.");
 
-			$perintisan->namaperintisan 	= \Input::get('namaperintisan');
-			$perintisan->alamat 			= \Input::get('alamat');
-			$perintisan->departemen 		= \Input::get('departemen');
-			$perintisan->daerah 			= \Input::get('daerah');
-			$perintisan->mulaiberdiri 		= \Input::get('mulaiberdiri');
-			$perintisan->namaperintis 		= \Input::get('namaperintis');
-			$perintisan->tanggallahir 		= \Input::get('tanggallahir');
-			$perintisan->tempatlahir 		= \Input::get('tempatlahir');
-			$perintisan->telepon 			= \Input::get('telepon');
-			$perintisan->gerejamentor 		= \Input::get('gerejamentor');
-			$perintisan->jenisperintisan 	= \Input::get('jenisperintisan');
-			$perintisan->jemaatsm 			= \Input::get('jemaatsm');
-			$perintisan->jemaatdewasa 		= \Input::get('jemaatdewasa');
-			$perintisan->jemaatrkm 			= \Input::get('jemaatrkm');
-			$perintisan->jemaatkka 			= \Input::get('jemaatkka');
-			$perintisan->bpd 				= \Input::get('bpd');
-			$perintisan->keterangan 		= \Input::get('keterangan');
+			$perintisan->namaperintisan 	= $input['namaperintisan'];
+			$perintisan->alamat 			= $input['alamat'];
+			$perintisan->departemen 		= $input['departemen'];
+			$perintisan->daerah 			= $input['daerah'];
+			$perintisan->mulaiberdiri 		= $input['mulaiberdiri'];
+			$perintisan->namaperintis 		= $input['namaperintis'];
+			$perintisan->tanggallahir 		= $input['tanggallahir'];
+			$perintisan->tempatlahir 		= $input['tempatlahir'];
+			$perintisan->telepon 			= $input['telepon'];
+			$perintisan->gerejamentor 		= $input['gerejamentor'];
+			$perintisan->jenisperintisan 	= $input['jenisperintisan'];
+			$perintisan->jemaatsm 			= $input['jemaatsm'];
+			$perintisan->jemaatdewasa 		= $input['jemaatdewasa'];
+			$perintisan->jemaatrkm 			= $input['jemaatrkm'];
+			$perintisan->jemaatkka 			= $input['jemaatkka'];
+			$perintisan->bpd 				= $input['bpd'];
+			$perintisan->keterangan 		= $input['keterangan'];
 
 			$perintisan->save();
 
 			\Session::flash('message', 'Data perintisan berhasil disimpan.');
 			return redirect('perintisan');
-
 		}
-
 	}
 
 	/**

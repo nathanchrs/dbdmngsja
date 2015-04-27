@@ -4,6 +4,8 @@
 
 @section('content')
 
+<?php Date::setLocale('id'); ?>
+
 <div class="container-fluid">
 
 	<h1>{{ $perintisan->namaperintisan or 'Perintisan Baru' }}</h1>
@@ -60,7 +62,7 @@
 					<div class="panel-body">
 						<div class="form-group @if ($errors->has('mulaiberdiri')) has-error @endif">
 							<label>{{ $columnDescription['mulaiberdiri'] }}</label>
-							<input type="text" class="form-control" name="mulaiberdiri" value="{{ old('mulaiberdiri', isset($perintisan->mulaiberdiri) ? $perintisan->mulaiberdiri : '') }}">
+							<input type="date" class="form-control" name="mulaiberdiri" placeholder="Contoh: {{ Date::now()->format('j F Y') }}" value="{{ old('mulaiberdiri', isset($perintisan->mulaiberdiri) ? $perintisan->mulaiberdiri : '') }}">
 							@if ($errors->has('mulaiberdiri')) <p class="help-block"><span class="glyphicon glyphicon-remove"></span> {{ $errors->first('mulaiberdiri') }}</p> @endif
 						</div>
 						<div class="form-group @if ($errors->has('namaperintis')) has-error @endif">
@@ -75,7 +77,7 @@
 						</div>
 						<div class="form-group @if ($errors->has('tanggallahir')) has-error @endif">
 							<label>{{ $columnDescription['tanggallahir'] }}</label>
-							<input type="text" class="form-control" name="tanggallahir" value="{{ old('tanggallahir', isset($perintisan->tanggallahir) ? $perintisan->tanggallahir : '') }}">
+							<input type="date" class="form-control" name="tanggallahir" placeholder="Contoh: {{ Date::now()->format('j F Y') }}" value="{{ old('tanggallahir', isset($perintisan->tanggallahir) ? $perintisan->tanggallahir : '') }}">
 							@if ($errors->has('tanggallahir')) <p class="help-block"><span class="glyphicon glyphicon-remove"></span> {{ $errors->first('tanggallahir') }}</p> @endif
 						</div>
 					</div>
@@ -115,9 +117,7 @@
 						Laporan Keuangan
 					</div>
 					<div class="panel-body">
-						<div class="form-group">
-							<textarea class="form-control" rows="4"></textarea>
-						</div>
+						list laporan keuangan
 					</div>
 				</div>
 
@@ -169,7 +169,7 @@
 	</form>
 
 	@if(isset($perintisan))
-		<form style="margin-top:10px;" role="form" method="post" action="{{ url('/perintisan') }}{{ '/'.$perintisan->id }}">
+		<form style="margin-top:10px;" role="form" method="post" onsubmit="return confirm('Yakin ingin menghapus data perintisan?');" action="{{ url('/perintisan') }}{{ '/'.$perintisan->id }}">
 			<input type="hidden" name="_token" value="{{ csrf_token() }}">
 			<input type="hidden" name="_method" value="DELETE">
 			<button type="submit" class="btn btn-lg btn-danger"><span class="glyphicon glyphicon-trash"></span> Hapus Data</button>

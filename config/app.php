@@ -145,6 +145,11 @@ return [
 		'App\Providers\EventServiceProvider',
 		'App\Providers\RouteServiceProvider',
 
+		/*
+		 * Third-party Service Providers...
+		 */
+		'Jenssegers\Date\DateServiceProvider',
+
 	],
 
 	/*
@@ -193,6 +198,7 @@ return [
 		'Validator' => 'Illuminate\Support\Facades\Validator',
 		'View'      => 'Illuminate\Support\Facades\View',
 
+		'Date'		=> 'Jenssegers\Date\Date',
 	],
 
 ];
