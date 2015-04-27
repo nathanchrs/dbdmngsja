@@ -51,6 +51,13 @@
 </div>
 
 <div class="container-fluid">
+
+  @if(Session::has('message'))
+    <div class="alert alert-success">
+      {{ Session::get('message') }}
+    </div>
+  @endif
+
   <div class="table-responsive">
     <table class="table">
       <thead>

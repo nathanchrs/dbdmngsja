@@ -1,0 +1,14 @@
+REGEX-SNIPPETS
+==============
+
+INPUTTYPE=TEXT($columnName)
+
+function($columnName){
+	return
+}
+
+<div class="form-group @if ($errors->has('$columnName')) has-error @endif">
+	<label>{{ $columnDescription['$columnName'] }}</label>
+	<input type="text" class="form-control" name="$columnName" value="{{ old('$columnName', isset($perintisan->$columnName) ? $perintisan->$columnName : '') }}">
+	@if ($errors->has('$columnName')) <p class="help-block"><span class="glyphicon glyphicon-remove"></span> {{ $errors->first('$columnName') }}</p> @endif
+</div>

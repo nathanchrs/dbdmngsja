@@ -11,6 +11,11 @@ class Perintisan extends Model {
 	 */
 	protected $table = 'perintisan';
 
+	/**
+	 * Validation rules
+	 *
+	 * @var array
+	 */
 	public static $rules = [
 		'namaperintisan'	=> 'required',
 		'alamat'			=> 'required',
@@ -24,6 +29,11 @@ class Perintisan extends Model {
 		'jemaatkka'			=> 'integer'
 	];
 
+	/**
+	 * Friendly column names
+	 *
+	 * @var array
+	 */
 	public static $columnDescription = [
 		'id' 				=> 'ID',
 		'namaperintisan'	=> 'Nama perintisan',

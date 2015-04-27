@@ -52,7 +52,7 @@ class PerintisanController extends Controller {
 	 */
 	public function create()
 	{
-		return view('perintisan/perintisan-details', ['method'=>'POST']);
+		return view('perintisan/perintisan-details', ['method'=>'POST', 'columnDescription'=>Perintisan::$columnDescription]);
 	}
 
 	/**
@@ -62,17 +62,40 @@ class PerintisanController extends Controller {
 	 */
 	public function store()
 	{
-		
+
 		$validator = \Validator::make(\Input::all(), Perintisan::$rules);
 		$validator->setAttributeNames(Perintisan::$columnDescription);
 
 		if($validator->fails()){
-			return "store fail - ".var_dump($validator->errors());
+			return \Redirect::back()->withErrors($validator)->withInput();
 
 		} else {
-			return "store success";
-		}
 
+			$perintisan = new Perintisan;
+
+			$perintisan->namaperintisan 	= \Input::get('namaperintisan');
+			$perintisan->alamat 			= \Input::get('alamat');
+			$perintisan->departemen 		= \Input::get('departemen');
+			$perintisan->daerah 			= \Input::get('daerah');
+			$perintisan->mulaiberdiri 		= \Input::get('mulaiberdiri');
+			$perintisan->namaperintis 		= \Input::get('namaperintis');
+			$perintisan->tanggallahir 		= \Input::get('tanggallahir');
+			$perintisan->tempatlahir 		= \Input::get('tempatlahir');
+			$perintisan->telepon 			= \Input::get('telepon');
+			$perintisan->gerejamentor 		= \Input::get('gerejamentor');
+			$perintisan->jenisperintisan 	= \Input::get('jenisperintisan');
+			$perintisan->jemaatsm 			= \Input::get('jemaatsm');
+			$perintisan->jemaatdewasa 		= \Input::get('jemaatdewasa');
+			$perintisan->jemaatrkm 			= \Input::get('jemaatrkm');
+			$perintisan->jemaatkka 			= \Input::get('jemaatkka');
+			$perintisan->bpd 				= \Input::get('bpd');
+			$perintisan->keterangan 		= \Input::get('keterangan');
+
+			$perintisan->save();
+
+			\Session::flash('message', 'Data perintisan berhasil disimpan.');
+			return redirect('perintisan');
+		}
 	}
 
 	/**
@@ -86,7 +109,7 @@ class PerintisanController extends Controller {
 		$perintisan = Perintisan::find($id);
 		if($perintisan == null) abort(404, "Data perintisan tidak ditemukan.");
 		
-		return view('perintisan/perintisan-details', ['perintisan'=>$perintisan, 'method'=>'PUT']);
+		return view('perintisan/perintisan-details', ['perintisan'=>$perintisan, 'method'=>'PUT', 'columnDescription'=>Perintisan::$columnDescription]);
 	}
 
 	/**
@@ -108,7 +131,42 @@ class PerintisanController extends Controller {
 	 */
 	public function update($id)
 	{
-		return "update ".$id;
+		$validator = \Validator::make(\Input::all(), Perintisan::$rules);
+		$validator->setAttributeNames(Perintisan::$columnDescription);
+
+		if($validator->fails()){
+			return \Redirect::back()->withErrors($validator)->withInput();
+
+		} else {
+
+			$perintisan = Perintisan::find($id);
+			if($perintisan == null) abort(404, "Data perintisan tidak ditemukan.");
+
+			$perintisan->namaperintisan 	= \Input::get('namaperintisan');
+			$perintisan->alamat 			= \Input::get('alamat');
+			$perintisan->departemen 		= \Input::get('departemen');
+			$perintisan->daerah 			= \Input::get('daerah');
+			$perintisan->mulaiberdiri 		= \Input::get('mulaiberdiri');
+			$perintisan->namaperintis 		= \Input::get('namaperintis');
+			$perintisan->tanggallahir 		= \Input::get('tanggallahir');
+			$perintisan->tempatlahir 		= \Input::get('tempatlahir');
+			$perintisan->telepon 			= \Input::get('telepon');
+			$perintisan->gerejamentor 		= \Input::get('gerejamentor');
+			$perintisan->jenisperintisan 	= \Input::get('jenisperintisan');
+			$perintisan->jemaatsm 			= \Input::get('jemaatsm');
+			$perintisan->jemaatdewasa 		= \Input::get('jemaatdewasa');
+			$perintisan->jemaatrkm 			= \Input::get('jemaatrkm');
+			$perintisan->jemaatkka 			= \Input::get('jemaatkka');
+			$perintisan->bpd 				= \Input::get('bpd');
+			$perintisan->keterangan 		= \Input::get('keterangan');
+
+			$perintisan->save();
+
+			\Session::flash('message', 'Data perintisan berhasil disimpan.');
+			return redirect('perintisan');
+
+		}
+
 	}
 
 	/**
@@ -119,7 +177,12 @@ class PerintisanController extends Controller {
 	 */
 	public function destroy($id)
 	{
-		return "delete ".$id;
+		$perintisan = Perintisan::find($id);
+		if($perintisan == null) abort(404, "Data perintisan tidak ditemukan.");
+		$perintisan->delete();
+
+		\Session::flash('message', 'Data perintisan telah dihapus.');
+		return redirect('perintisan');
 	}
 
 }
