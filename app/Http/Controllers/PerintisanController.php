@@ -64,7 +64,7 @@ class PerintisanController extends Controller {
 	{
 		$this->validateWithCustomAttributes($request, Perintisan::$rules,[],Perintisan::$columnDescription);
 
-		$perintisan = Perintisan::create($request->all);
+		$perintisan = Perintisan::create($request->all());
 		$perintisan->save();
 
 		return redirect('perintisan')->with('message', 'Data perintisan berhasil disimpan.');

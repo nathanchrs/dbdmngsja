@@ -87,6 +87,7 @@ class Perintisan extends Model {
 	 * @return string
 	 */
 	public function getMulaiberdiriAttribute($value){
+		if($value==null) return '';
 		\Date::setLocale(\Config::get('app.locale'));
 		$tempDate = \Date::parse($value);
 		return $tempDate->format('j F Y');
@@ -99,6 +100,7 @@ class Perintisan extends Model {
 	 * @return string
 	 */
 	public function getTanggallahirAttribute($value){
+		if($value==null) return '';
 		\Date::setLocale(\Config::get('app.locale'));
 		$tempDate = \Date::parse($value);
 		return $tempDate->format('j F Y');
@@ -110,8 +112,12 @@ class Perintisan extends Model {
 	 * @param date $value
 	 */
 	public function setTanggallahirAttribute($value){
-		\Date::setLocale(\Config::get('app.locale'));
-		$this->attributes['tanggallahir'] = \Date::parse($value);
+		if($value=='' || $value==null){
+			$this->attributes['tanggallahir'] = null;
+		} else {
+			\Date::setLocale(\Config::get('app.locale'));
+			$this->attributes['tanggallahir'] = \Date::parse($value);
+		}
 	}
 
 	/**
@@ -120,8 +126,12 @@ class Perintisan extends Model {
 	 * @param date $value
 	 */
 	public function setMulaiberdiriAttribute($value){
-		\Date::setLocale(\Config::get('app.locale'));
-		$this->attributes['mulaiberdiri'] = \Date::parse($value);
+		if($value=='' || $value==null){
+			$this->attributes['mulaiberdiri'] = null;
+		} else {
+			\Date::setLocale(\Config::get('app.locale'));
+			$this->attributes['mulaiberdiri'] = \Date::parse($value);
+		}
 	}
 
 

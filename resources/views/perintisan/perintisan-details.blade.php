@@ -114,10 +114,10 @@
 
 				<div class="panel panel-default">
 					<div class="panel-heading">
-						Laporan Keuangan
+						Laporan Bulanan
 					</div>
 					<div class="panel-body">
-						list laporan keuangan
+						list laporan bulanan
 					</div>
 				</div>
 
