@@ -74,6 +74,8 @@ return [
 	"url"                  => "Format :attribute invalid",
 	"timezone"             => ":attribute harus berupa zona waktu yang valid.",
 
+	"intldate" => ":attribute tidak mengandung tanggal yang valid.", //custom validator
+
 	/*
 	|--------------------------------------------------------------------------
 	| Custom Validation Language Lines

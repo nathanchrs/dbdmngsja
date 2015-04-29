@@ -1,6 +1,7 @@
 <?php namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use App\Providers\Validation;
 
 class AppServiceProvider extends ServiceProvider {
 
@@ -12,6 +13,19 @@ class AppServiceProvider extends ServiceProvider {
 	public function boot()
 	{
 		//
+
+		//Extends validator for international dates (uses Jenssegers\laravel-date)
+		\Validator::extend('intldate', function($attribute, $value){
+			try {
+				\Date::setLocale(\Config::get('app.locale'));
+				$temp = \Date::parse($value);
+				return $temp->getLastErrors()['warning_count'] == 0;
+			} catch(\Exception $ex){
+				return false;
+			}
+		});
+
+
 	}
 
 	/**

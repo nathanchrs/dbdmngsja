@@ -9,6 +9,8 @@ use Illuminate\Validation\Validator;
 
 class PerintisanController extends Controller {
 
+	use \App\Http\Traits\ValidatesRequestsWithCustomAttributes;
+
 	/**
 	 * Create a new controller instance.
 	 *
@@ -26,7 +28,6 @@ class PerintisanController extends Controller {
 	 */
 	public function index(Request $request)
 	{
-		//$validcolumns = ['namaperintisan'=>'Nama perintisan', 'alamat'=>'Alamat', 'departemen'=>'Departemen', 'daerah'=>'Daerah', 'namaperintis'=>'Nama perintis', 'telepon'=>'Telepon', 'gerejamentor'=>'Gereja mentor', 'jenisperintisan'=>'Jenis perintisan', 'bpd'=>'BPD', 'keterangan'=>'Keterangan'];
 		$validColumns = array_only(Perintisan::$columnDescription, ['namaperintisan', 'alamat', 'departemen', 'daerah', 'namaperintis', 'telepon', 'gerejamentor', 'jenisperintisan', 'bpd', 'keterangan']);
 
 		if($request->has('search')){
@@ -36,7 +37,6 @@ class PerintisanController extends Controller {
 			$data = Perintisan::where($searchColumn,'like','%'.$request->input('search').'%')->paginate(50);
 		} else {
 			$data = Perintisan::paginate(50);
-
 		}	
 
 		$request->flash();	
@@ -60,56 +60,14 @@ class PerintisanController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function store()
+	public function store(Request $request)
 	{
-		\Date::setLocale('id');
-		$input = \Input::all();
+		$this->validateWithCustomAttributes($request, Perintisan::$rules,[],Perintisan::$columnDescription);
 
-		try {
-			$input['mulaiberdiri'] = \Date::parse($input['mulaiberdiri']);
-		} catch(\Exception $ex){
-			return \Redirect::back()->withErrors(['mulaiberdiri'=>'Tanggal mulai berdiri tidak valid.'])->withInput();
-		}
+		$perintisan = Perintisan::create($request->all);
+		$perintisan->save();
 
-		try {
-			$input['tanggallahir'] = \Date::parse($input['tanggallahir']);
-		} catch(\Exception $ex){
-			return \Redirect::back()->withErrors(['tanggallahir'=>'Tanggal lahir perintis tidak valid.'])->withInput();
-		}
-
-		$validator = \Validator::make($input, Perintisan::$rules);
-		$validator->setAttributeNames(Perintisan::$columnDescription);
-
-		if($validator->fails()){
-			return \Redirect::back()->withErrors($validator)->withInput();
-
-		} else {
-
-			$perintisan = new Perintisan;
-
-			$perintisan->namaperintisan 	= $input['namaperintisan'];
-			$perintisan->alamat 			= $input['alamat'];
-			$perintisan->departemen 		= $input['departemen'];
-			$perintisan->daerah 			= $input['daerah'];
-			$perintisan->mulaiberdiri 		= $input['mulaiberdiri'];
-			$perintisan->namaperintis 		= $input['namaperintis'];
-			$perintisan->tanggallahir 		= $input['tanggallahir'];
-			$perintisan->tempatlahir 		= $input['tempatlahir'];
-			$perintisan->telepon 			= $input['telepon'];
-			$perintisan->gerejamentor 		= $input['gerejamentor'];
-			$perintisan->jenisperintisan 	= $input['jenisperintisan'];
-			$perintisan->jemaatsm 			= $input['jemaatsm'];
-			$perintisan->jemaatdewasa 		= $input['jemaatdewasa'];
-			$perintisan->jemaatrkm 			= $input['jemaatrkm'];
-			$perintisan->jemaatkka 			= $input['jemaatkka'];
-			$perintisan->bpd 				= $input['bpd'];
-			$perintisan->keterangan 		= $input['keterangan'];
-
-			$perintisan->save();
-
-			\Session::flash('message', 'Data perintisan berhasil disimpan.');
-			return redirect('perintisan');
-		}
+		return redirect('perintisan')->with('message', 'Data perintisan berhasil disimpan.');
 	}
 
 	/**
@@ -143,57 +101,18 @@ class PerintisanController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function update($id)
+	public function update(Request $request, $id)
 	{
-		\Date::setLocale('id');
-		$input = \Input::all();
 
-		try {
-			$input['mulaiberdiri'] = \Date::parse($input['mulaiberdiri']);
-		} catch(\Exception $ex){
-			return \Redirect::back()->withErrors(['mulaiberdiri'=>'Tanggal mulai berdiri tidak valid.'])->withInput();
-		}
+		$this->validateWithCustomAttributes($request, Perintisan::$rules,[],Perintisan::$columnDescription);
 
-		try {
-			$input['tanggallahir'] = \Date::parse($input['tanggallahir']);
-		} catch(\Exception $ex){
-			return \Redirect::back()->withErrors(['tanggallahir'=>'Tanggal lahir perintis tidak valid.'])->withInput();
-		}
+		$perintisan = Perintisan::find($id);
+		if($perintisan == null) abort(404, "Data perintisan tidak ditemukan.");
 
-		$validator = \Validator::make($input, Perintisan::$rules);
-		$validator->setAttributeNames(Perintisan::$columnDescription);
+		$perintisan->fill($request->all());
+		$perintisan->save();
 
-		if($validator->fails()){
-			return \Redirect::back()->withErrors($validator)->withInput();
-
-		} else {
-
-			$perintisan = Perintisan::find($id);
-			if($perintisan == null) abort(404, "Data perintisan tidak ditemukan.");
-
-			$perintisan->namaperintisan 	= $input['namaperintisan'];
-			$perintisan->alamat 			= $input['alamat'];
-			$perintisan->departemen 		= $input['departemen'];
-			$perintisan->daerah 			= $input['daerah'];
-			$perintisan->mulaiberdiri 		= $input['mulaiberdiri'];
-			$perintisan->namaperintis 		= $input['namaperintis'];
-			$perintisan->tanggallahir 		= $input['tanggallahir'];
-			$perintisan->tempatlahir 		= $input['tempatlahir'];
-			$perintisan->telepon 			= $input['telepon'];
-			$perintisan->gerejamentor 		= $input['gerejamentor'];
-			$perintisan->jenisperintisan 	= $input['jenisperintisan'];
-			$perintisan->jemaatsm 			= $input['jemaatsm'];
-			$perintisan->jemaatdewasa 		= $input['jemaatdewasa'];
-			$perintisan->jemaatrkm 			= $input['jemaatrkm'];
-			$perintisan->jemaatkka 			= $input['jemaatkka'];
-			$perintisan->bpd 				= $input['bpd'];
-			$perintisan->keterangan 		= $input['keterangan'];
-
-			$perintisan->save();
-
-			\Session::flash('message', 'Data perintisan berhasil disimpan.');
-			return redirect('perintisan');
-		}
+		return redirect('perintisan')->with('message', 'Data perintisan berhasil disimpan.');
 	}
 
 	/**
@@ -208,8 +127,7 @@ class PerintisanController extends Controller {
 		if($perintisan == null) abort(404, "Data perintisan tidak ditemukan.");
 		$perintisan->delete();
 
-		\Session::flash('message', 'Data perintisan telah dihapus.');
-		return redirect('perintisan');
+		return redirect('perintisan')->with('message', 'Data perintisan telah dihapus.');
 	}
 
 }

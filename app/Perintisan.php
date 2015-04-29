@@ -12,6 +12,31 @@ class Perintisan extends Model {
 	protected $table = 'perintisan';
 
 	/**
+	 * The attributes that are mass assignable.
+	 *
+	 * @var array
+	 */
+	protected $fillable = [
+		'namaperintisan',
+		'alamat',
+		'departemen',
+		'daerah',
+		'mulaiberdiri',
+		'namaperintis',
+		'tanggallahir',
+		'tempatlahir',
+		'telepon',
+		'gerejamentor',
+		'jenisperintisan',
+		'jemaatsm',
+		'jemaatdewasa',
+		'jemaatrkm',
+		'jemaatkka',
+		'bpd',
+		'keterangan'
+	];
+
+	/**
 	 * Validation rules
 	 *
 	 * @var array
@@ -21,8 +46,8 @@ class Perintisan extends Model {
 		'alamat'			=> 'required',
 		'daerah'			=> 'required',
 		'telepon'			=> 'required',
-		'mulaiberdiri'		=> 'date',
-		'tanggallahir'		=> 'date',
+		'mulaiberdiri'		=> 'intldate', //intldate is a custom validation rule extended in AppServiceProvider's boot method
+		'tanggallahir'		=> 'intldate',
 		'jemaatdewasa'		=> 'integer',
 		'jemaatsm'			=> 'integer',
 		'jemaatrkm'			=> 'integer',
@@ -54,5 +79,50 @@ class Perintisan extends Model {
 		'bpd' 				=> 'BPD',
 		'keterangan' 		=> 'Keterangan lainnya'
 	];
+
+	/**
+	 * Date accessor for mulaiberdiri.
+	 *
+	 * @param date $value
+	 * @return string
+	 */
+	public function getMulaiberdiriAttribute($value){
+		\Date::setLocale(\Config::get('app.locale'));
+		$tempDate = \Date::parse($value);
+		return $tempDate->format('j F Y');
+	}
+
+	/**
+	 * Date accessor for tanggallahir.
+	 *
+	 * @param date $value
+	 * @return string
+	 */
+	public function getTanggallahirAttribute($value){
+		\Date::setLocale(\Config::get('app.locale'));
+		$tempDate = \Date::parse($value);
+		return $tempDate->format('j F Y');
+	}
+
+	/**
+	 * Date mutator for tanggallahir.
+	 *
+	 * @param date $value
+	 */
+	public function setTanggallahirAttribute($value){
+		\Date::setLocale(\Config::get('app.locale'));
+		$this->attributes['tanggallahir'] = \Date::parse($value);
+	}
+
+	/**
+	 * Date mutator for mulaiberdiri.
+	 *
+	 * @param date $value
+	 */
+	public function setMulaiberdiriAttribute($value){
+		\Date::setLocale(\Config::get('app.locale'));
+		$this->attributes['mulaiberdiri'] = \Date::parse($value);
+	}
+
 
 }

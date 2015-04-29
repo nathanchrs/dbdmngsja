@@ -74,6 +74,8 @@ return [
 	"url"                  => "The :attribute format is invalid.",
 	"timezone"             => "The :attribute must be a valid zone.",
 
+	"intldate" => "The :attribute is not a valid date.", //custom validator
+
 	/*
 	|--------------------------------------------------------------------------
 	| Custom Validation Language Lines
