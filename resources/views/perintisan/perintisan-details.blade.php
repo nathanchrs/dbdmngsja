@@ -15,6 +15,14 @@
 		<li class="active">Detail Perintisan</li>
 	</ol>
 
+	@if($errors->has())
+		<div class="alert alert-danger">
+			@foreach ($errors->all() as $errorMessage)
+				<p>{{ $errorMessage }} </p>
+			@endforeach
+	   	</div>
+	@endif
+
 	<form role="form" method="post" action="{{ url('/perintisan') }}{{ $method=='PUT' ? '/'.$perintisan->id : '' }}">
 		<input type="hidden" name="_token" value="{{ csrf_token() }}">
 		<input type="hidden" name="_method" value="{{ $method or 'POST' }}">
@@ -34,12 +42,34 @@
 						</div>
 						<div class="form-group @if ($errors->has('jenisperintisan')) has-error @endif">
 							<label>{{ $columnDescription['jenisperintisan'] }}</label>
-							<input type="text" class="form-control" name="jenisperintisan" value="{{ old('jenisperintisan', isset($perintisan->jenisperintisan) ? $perintisan->jenisperintisan : '') }}">
+							<select class="form-control" name="jenisperintisan">
+							  <?php
+							  	$expectedValue = old('jenisperintisan', isset($perintisan->jenisperintisan) ? $perintisan->jenisperintisan : '');
+							  	$hasSelected = false;
+							  ?>
+				              @foreach($comboBoxData['jenisperintisan'] as $colval)
+				                <option <?php if($colval==$expectedValue){ echo 'selected'; $hasSelected = true; } ?>>{{ $colval }}</option>
+				              @endforeach
+				              @if(!$hasSelected)
+				              	<option selected>{{ $expectedValue }}</option>
+				              @endif
+				            </select>
 							@if ($errors->has('jenisperintisan')) <p class="help-block"><span class="glyphicon glyphicon-remove"></span> {{ $errors->first('jenisperintisan') }}</p> @endif
 						</div>
 						<div class="form-group @if ($errors->has('daerah')) has-error @endif">
 							<label>{{ $columnDescription['daerah'] }}</label>
-							<input type="text" class="form-control" name="daerah" value="{{ old('daerah', isset($perintisan->daerah) ? $perintisan->daerah : '') }}">
+							<select class="form-control" name="daerah">
+							  <?php
+							  	$expectedValue = old('daerah', isset($perintisan->daerah) ? $perintisan->daerah : '');
+							  	$hasSelected = false;
+							  ?>
+				              @foreach($comboBoxData['daerah'] as $colval)
+				                <option <?php if($colval==$expectedValue){ echo 'selected'; $hasSelected = true; } ?>>{{ $colval }}</option>
+				              @endforeach
+				              @if(!$hasSelected)
+				              	<option selected>{{ $expectedValue }}</option>
+				              @endif
+				            </select>
 							@if ($errors->has('daerah')) <p class="help-block"><span class="glyphicon glyphicon-remove"></span> {{ $errors->first('daerah') }}</p> @endif
 						</div>
 						<div class="form-group @if ($errors->has('alamat')) has-error @endif">
@@ -62,7 +92,7 @@
 					<div class="panel-body">
 						<div class="form-group @if ($errors->has('mulaiberdiri')) has-error @endif">
 							<label>{{ $columnDescription['mulaiberdiri'] }}</label>
-							<input type="date" class="form-control" name="mulaiberdiri" placeholder="Contoh: {{ Date::now()->format('j F Y') }}" value="{{ old('mulaiberdiri', isset($perintisan->mulaiberdiri) ? $perintisan->mulaiberdiri : '') }}">
+							<input type="text" class="form-control" name="mulaiberdiri" placeholder="Contoh: {{ Date::now()->format('j F Y') }}" value="{{ old('mulaiberdiri', isset($perintisan->mulaiberdiri) ? $perintisan->mulaiberdiri : '') }}">
 							@if ($errors->has('mulaiberdiri')) <p class="help-block"><span class="glyphicon glyphicon-remove"></span> {{ $errors->first('mulaiberdiri') }}</p> @endif
 						</div>
 						<div class="form-group @if ($errors->has('namaperintis')) has-error @endif">
@@ -77,7 +107,7 @@
 						</div>
 						<div class="form-group @if ($errors->has('tanggallahir')) has-error @endif">
 							<label>{{ $columnDescription['tanggallahir'] }}</label>
-							<input type="date" class="form-control" name="tanggallahir" placeholder="Contoh: {{ Date::now()->format('j F Y') }}" value="{{ old('tanggallahir', isset($perintisan->tanggallahir) ? $perintisan->tanggallahir : '') }}">
+							<input type="text" class="form-control" name="tanggallahir" placeholder="Contoh: {{ Date::now()->format('j F Y') }}" value="{{ old('tanggallahir', isset($perintisan->tanggallahir) ? $perintisan->tanggallahir : '') }}">
 							@if ($errors->has('tanggallahir')) <p class="help-block"><span class="glyphicon glyphicon-remove"></span> {{ $errors->first('tanggallahir') }}</p> @endif
 						</div>
 					</div>
@@ -95,7 +125,18 @@
 						</div>
 						<div class="form-group @if ($errors->has('departemen')) has-error @endif">
 							<label>{{ $columnDescription['departemen'] }}</label>
-							<input type="text" class="form-control" name="departemen" value="{{ old('departemen', isset($perintisan->departemen) ? $perintisan->departemen : '') }}">
+							<select class="form-control" name="departemen">
+							  <?php
+							  	$expectedValue = old('departemen', isset($perintisan->departemen) ? $perintisan->departemen : '');
+							  	$hasSelected = false;
+							  ?>
+				              @foreach($comboBoxData['departemen'] as $colval)
+				                <option <?php if($colval==$expectedValue){ echo 'selected'; $hasSelected = true; } ?>>{{ $colval }}</option>
+				              @endforeach
+				              @if(!$hasSelected)
+				              	<option selected>{{ $expectedValue }}</option>
+				              @endif
+				            </select>
 							@if ($errors->has('departemen')) <p class="help-block"><span class="glyphicon glyphicon-remove"></span> {{ $errors->first('departemen') }}</p> @endif
 						</div>
 						<div class="form-group @if ($errors->has('bpd')) has-error @endif">

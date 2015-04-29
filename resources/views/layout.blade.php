@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en"><head>
+<html lang="id"><head>
 <meta http-equiv="content-type" content="text/html; charset=UTF-8">
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -19,6 +19,8 @@
       <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
+
+    <script src="{{ asset('/js/jquery-1.11.2.min.js') }}"></script> <!-- loaded first to be able to use $(window).load -->
   </head>
 
   <body>
@@ -35,12 +37,10 @@
 
     @yield('content')
 
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <script src="{{ asset('/js/jquery-1.11.2.min.js') }}"></script>
     <script src="{{ asset('/js/bootstrap.min.js') }}"></script>
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="{{ asset('/js/ie10-viewport-bug-workaround.js') }}"></script>
+    <script src="{{ asset('/js/jquery.ba-floatingscrollbar.min.js') }}"></script> <!-- Ben Alman's jQuery Floating Scrollbar v0.5 for the table's horizontal scrolling -->
 
 </body></html>

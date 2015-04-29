@@ -2,6 +2,21 @@
  * Global add-ons
  */
 
+ /*
+  * TODO: no-js-fallback classes, detect if no js, prevent navbar collapse etc.
+  */
+
+.no-js-fallback { 
+  display:none;
+}
+
+th, td {
+  white-space:nowrap;
+  max-width:300px;
+  text-overflow:ellipsis;
+  overflow:hidden;
+}
+
 tr.clickable:hover{
   background-color:#eee;
   cursor:pointer;

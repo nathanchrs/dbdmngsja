@@ -28,8 +28,8 @@ class Perintisan extends Model {
 		'telepon',
 		'gerejamentor',
 		'jenisperintisan',
-		'jemaatsm',
 		'jemaatdewasa',
+		'jemaatsm',
 		'jemaatrkm',
 		'jemaatkka',
 		'bpd',
@@ -62,22 +62,76 @@ class Perintisan extends Model {
 	public static $columnDescription = [
 		'id' 				=> 'ID',
 		'namaperintisan'	=> 'Nama perintisan',
-		'alamat' 			=> 'Alamat',
-		'departemen' 		=> 'Departemen',
 		'daerah' 			=> 'Daerah',
+		'alamat' 			=> 'Alamat',
+		'telepon' 			=> 'Telepon',
+		'jenisperintisan' 	=> 'Jenis perintisan',
+		'gerejamentor' 		=> 'Gereja mentor',
+		'departemen' 		=> 'Departemen',
 		'mulaiberdiri' 		=> 'Mulai berdiri',
 		'namaperintis' 		=> 'Perintis',
 		'tanggallahir' 		=> 'Tanggal lahir perintis',
 		'tempatlahir'		=> 'Tempat lahir perintis',
-		'telepon' 			=> 'Telepon',
-		'gerejamentor' 		=> 'Gereja mentor',
-		'jenisperintisan' 	=> 'Jenis perintisan',
-		'jemaatsm' 			=> 'Jumlah jemaat Sekolah Minggu',
-		'jemaatdewasa' 		=> 'Jumlah jemaat dewasa',
-		'jemaatrkm' 		=> 'Jumlah jemaat RKM',
-		'jemaatkka' 		=> 'Jumlah jemaat KKA',
+		'jemaatdewasa' 		=> 'Jemaat dewasa',
+		'jemaatsm' 			=> 'Jemaat Sekolah Minggu',
+		'jemaatrkm' 		=> 'Jemaat RKM',
+		'jemaatkka' 		=> 'Jemaat KKA',
 		'bpd' 				=> 'BPD',
-		'keterangan' 		=> 'Keterangan lainnya'
+		'keterangan' 		=> 'Keterangan'
+	];
+
+	/**
+	 * ComboBox enum data
+	 *
+	 * @var array
+	 */
+	public static $comboBoxData = [
+		'jenisperintisan'	=> ['Gereja kota', 'Gereja non-kota'],
+		'departemen'		=> ['DMIB', 'DMITA', 'DMIT'],
+		'daerah'			=> [
+			'Sumut 1',
+			'Sumut 2',
+			'Kepri dan Sumbar',
+			'Sumbagsel',
+			'Banten',
+			'Jawa Barat',
+			'Jateng Barat dan Yogyakarta',
+			'Jateng Timur',
+			'Jatim 1',
+			'Jatim 2',
+			'Kalbar',
+			'Kalteng 1',
+			'Kalteng 2 dan Kalsel',
+			'Kaltim',
+			'Sulselbatra',
+			'Sulut 1',
+			'Sulut 2',
+			'DKI Jakarta',
+			'Bali dan NTB',
+			'NTT',
+			'Maluku',
+			'Maluku Utara',
+			'Papua',
+			'Papua Barat'
+		]
+	];
+
+	/**
+	 * Columns that can be used to search.
+	 *
+	 * @var array
+	 */
+	public static $searchableColumns = [
+		'namaperintisan',
+		'alamat',
+		'departemen',
+		'daerah',
+		'namaperintis',
+		'telepon',
+		'gerejamentor',
+		'jenisperintisan',
+		'bpd',
+		'keterangan'
 	];
 
 	/**

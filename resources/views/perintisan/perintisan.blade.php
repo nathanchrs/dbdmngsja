@@ -1,6 +1,6 @@
 @extends('layout')
 
-@section('title', 'DMN GSJA - Dashboard')
+@section('title', 'DMN GSJA - Perintisan')
 
 @section('content')
 
@@ -35,7 +35,7 @@
           <div class="input-group">
             <span class="input-group-addon">berdasarkan</span>
             <select class="form-control" name="searchcolumn">
-              @foreach($validColumns as $colkey => $colval)
+              @foreach(array_only($columnDescription, $searchableColumns) as $colkey => $colval)
                 <option value="{{ $colkey }}" <?php if($colkey==old('searchcolumn')) echo 'selected'; ?>>{{ $colval }}</option>
               @endforeach
             </select>
@@ -44,7 +44,6 @@
       </form>
       
       <a href="{{ url('/perintisan').'/create' }}" class="btn btn-default navbar-btn"><span class="glyphicon glyphicon-plus"></span> Data Baru</a>
-      <a href="#" class="btn btn-default navbar-btn"><span class="glyphicon glyphicon-cog"></span> Pengaturan</a>
     </div>
 
   </div>
@@ -59,24 +58,28 @@
   @endif
 
   <div class="table-responsive">
-    <table class="table">
+    <table class="table" id="maintable">
       <thead>
         <tr>
-          <th>Nama Perintisan</th>
-          <th>Alamat</th>
-          <th>Departemen</th>
-          <th>Daerah</th>
-          <th>Telepon</th>
+          @foreach($visibleColumns as $col)
+            <th>{{ $columnDescription[$col] }}</th>
+          @endforeach
         </tr>
       </thead>
       <tbody>
+
         @forelse($data as $perintisan)
           <tr class="clickable" onclick="document.location='{{ url('/perintisan') }}/{{ $perintisan->id }}/edit';">
-            <td><a href="{{ url('/perintisan') }}/{{ $perintisan->id }}/edit">{{ $perintisan->namaperintisan }}</a></td>
-            <td>{{ $perintisan->alamat }}</td>
-            <td>{{ $perintisan->departemen }}</td>
-            <td>{{ $perintisan->daerah }}</td>
-            <td>{{ $perintisan->telepon }}</td>
+            <?php $firstColumn = true; ?>
+            @foreach($visibleColumns as $col)
+              <td>
+                @if($firstColumn)
+                  <a class="no-js-fallback" href="{{ url('/perintisan') }}/{{ $perintisan->id }}/edit"><span class="glyphicon glyphicon-chevron-right"></span></a>
+                  <?php $firstColumn = false; ?>
+                @endif
+                {{ $perintisan[$col] }}
+              </td>
+            @endforeach
           </tr>
         @empty
           <tr><td>Tidak ada data.</td></tr>
@@ -89,9 +92,16 @@
     {!! $data->render() !!}
   </nav>
 
+  <br>
   <footer>
     <p>© DMN GSJA 2015</p>
   </footer>
 </div>
+
+<script>
+  $(window).load(function(){
+    $('.table-responsive').floatingScrollbar();
+  });
+</script>
 
 @stop

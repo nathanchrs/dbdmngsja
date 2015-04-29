@@ -28,11 +28,26 @@ class PerintisanController extends Controller {
 	 */
 	public function index(Request $request)
 	{
-		$validColumns = array_only(Perintisan::$columnDescription, ['namaperintisan', 'alamat', 'departemen', 'daerah', 'namaperintis', 'telepon', 'gerejamentor', 'jenisperintisan', 'bpd', 'keterangan']);
+		$visibleColumns = [
+			'namaperintisan',
+			'daerah',
+			'alamat',
+			'telepon',
+			'jenisperintisan',
+			'gerejamentor',
+			'jemaatdewasa',
+			'jemaatsm',
+			'jemaatrkm',
+			'jemaatkka',
+			'mulaiberdiri',
+			'namaperintis',
+			'departemen',
+			'keterangan'
+		];
 
 		if($request->has('search')){
 			$searchColumn = $request->has('searchcolumn') ? $request->input('searchcolumn') : 'namaperintisan';
-			if(!array_key_exists($searchColumn, $validColumns)) $searchcolumn = 'namaperintisan';
+			if(!in_array($searchColumn, Perintisan::$searchableColumns)) $searchcolumn = 'namaperintisan';
 
 			$data = Perintisan::where($searchColumn,'like','%'.$request->input('search').'%')->paginate(50);
 		} else {
@@ -42,7 +57,13 @@ class PerintisanController extends Controller {
 		$request->flash();	
 		$data->setPath('perintisan');
 		$data->appends($request->except('page'));
-		return view('perintisan/perintisan', ['data'=>$data, 'validColumns'=>$validColumns]);
+
+		return view('perintisan/perintisan', [
+			'data'=>$data,
+			'columnDescription'=>Perintisan::$columnDescription,
+			'searchableColumns'=>Perintisan::$searchableColumns,
+			'visibleColumns'=>$visibleColumns
+		]);
 	}
 
 	/**
@@ -52,7 +73,11 @@ class PerintisanController extends Controller {
 	 */
 	public function create()
 	{
-		return view('perintisan/perintisan-details', ['method'=>'POST', 'columnDescription'=>Perintisan::$columnDescription]);
+		return view('perintisan/perintisan-details', [
+			'method'=>'POST',
+			'columnDescription'=>Perintisan::$columnDescription,
+			'comboBoxData'=>Perintisan::$comboBoxData
+		]);
 	}
 
 	/**
@@ -81,7 +106,12 @@ class PerintisanController extends Controller {
 		$perintisan = Perintisan::find($id);
 		if($perintisan == null) abort(404, "Data perintisan tidak ditemukan.");
 		
-		return view('perintisan/perintisan-details', ['perintisan'=>$perintisan, 'method'=>'PUT', 'columnDescription'=>Perintisan::$columnDescription]);
+		return view('perintisan/perintisan-details', [
+			'perintisan'=>$perintisan,
+			'method'=>'PUT',
+			'columnDescription'=>Perintisan::$columnDescription,
+			'comboBoxData'=>Perintisan::$comboBoxData
+		]);
 	}
 
 	/**
